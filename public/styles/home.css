@@ -26,6 +26,15 @@ h3 {
   font-weight: 900;
 }
 
+h3 a {
+  color: white;
+  text-decoration: none;
+}
+
+h3 a:hover {
+  color: white;
+}
+
 .nav-link {
   padding: 0.25rem 0;
   color: white;

@@ -46,7 +46,7 @@ app.use(
   })
 );
 
-const secret = process.env.SECRET || "thisshouldbeasecret!";
+const secret = process.env.SECRET;
 
 const sessionConfig = {
   name: "session",
