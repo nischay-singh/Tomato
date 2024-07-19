@@ -19,8 +19,10 @@ const helmet = require("helmet");
 const userRoutes = require("./routes/users.js");
 const restaurantRoutes = require("./routes/restaurants.js");
 const reviewRoutes = require("./routes/reviews.js");
+const MongoDBStore = require("connect-mongo")(session);
+const dbUrl = process.env.DB_URL || "mongodb://0.0.0.0:27017/tomato";
 
-mongoose.connect("mongodb://0.0.0.0:27017/tomato", {
+mongoose.connect(dbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -46,9 +48,20 @@ app.use(
   })
 );
 
-const secret = process.env.SECRET;
+const secret = process.env.SECRET || "thisshouldbeasecret";
+
+const store = new MongoDBStore({
+  url: dbUrl,
+  secret,
+  touchAfter: 24 * 60 * 60,
+});
+
+store.on("error", function (e) {
+  console.log("SESSION STORE ERROR", e);
+});
 
 const sessionConfig = {
+  store,
   name: "session",
   secret,
   resave: false,
