@@ -1,6 +1,4 @@
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
+require("dotenv").config();
 
 const express = require("express");
 const mongoose = require("mongoose");
@@ -86,7 +84,6 @@ const scriptSrcUrls = [
   "https://cdnjs.cloudflare.com/",
   "https://cdn.jsdelivr.net",
 ];
-//This is the array that needs added to
 const styleSrcUrls = [
   "https://kit-free.fontawesome.com/",
   "https://api.mapbox.com/",
