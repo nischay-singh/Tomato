@@ -3,7 +3,9 @@ const cities = require("./cities");
 const { places, descriptors } = require("./seedHelpers");
 const Restaurant = require("../models/restaurant");
 
-mongoose.connect("mongodb://0.0.0.0:27017/tomato", {
+const dbUrl = process.env.DB_URL || "mongodb://0.0.0.0:27017/tomato";
+console.log(dbUrl);
+mongoose.connect(dbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
